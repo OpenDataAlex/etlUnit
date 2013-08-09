@@ -1,0 +1,14 @@
+suite:
+    name: test3
+    connections: 
+        connection: 
+            name: test3 conn
+    setup: 
+        sql: 
+            stmt: select * from stuff
+        etl: etl stuff
+    test: 
+        sql: 
+            stmt: select * from stuff
+        result: 1
+    teardown: None
