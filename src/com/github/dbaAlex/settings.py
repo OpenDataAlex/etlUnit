@@ -1,15 +1,18 @@
+__author__ = 'coty'
+
 import logging
 import pprint
 import os
 import yaml
 
-# CustomLogging
+# Begin CustomLogging
 # create console handler and set level to info
 console = logging.StreamHandler()
 console.setLevel(logging.DEBUG)
 
 # create formatter
 formatter = logging.Formatter("%(asctime)s - %(name)s - %(levelname)s - %(message)s")
+
 # set formatter
 console.setFormatter(formatter)
 # End CustomLogging
@@ -22,7 +25,7 @@ settings_log.addHandler(console)
 
 pp = pprint.PrettyPrinter(indent=4)
 
-settings_filename = '.etlunit-settings.yaml'
+settings_filename = '.etlunit-settings.yml'
 
 settings_fs_locs = ["{}/{}".format(os.path.expanduser("~"), settings_filename), "".join(settings_filename)]
 
