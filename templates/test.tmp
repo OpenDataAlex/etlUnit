@@ -1,7 +1,0 @@
-# Connections: {{ connections }}
-{% for connection in connections.iteritems() %}
-    # {{ connection }}
-    {% for conn in connections['connection'].iteritems() %}
-        echo "{{ conn[1] }}"
-    {% endfor %}
-{% endfor %}
