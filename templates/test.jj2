@@ -1,0 +1,2 @@
+def {{ test['test']['name']|join('') }}(self):
+        assert 1 == 2
