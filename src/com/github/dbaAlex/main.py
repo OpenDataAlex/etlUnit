@@ -37,10 +37,10 @@ def main(argv):
     if options.gen_code:
         from yaml_reader import YAMLReader
         t = YAMLReader(options.in_file, options.in_dir, options.out_dir)
-        yaml_arr = t.readTests()
+        yaml_data = t.readTests()
 
         from code_generator import CodeGenerator
-        g = CodeGenerator(options.out_dir, yaml_arr)
+        g = CodeGenerator(options.out_dir, yaml_data)
         # Currently generateCode also persists the code to the output dir.
         # TODO: Decide if generateCode should also persist. Does there need to be a preview or test option here?
         g.generateCode()
