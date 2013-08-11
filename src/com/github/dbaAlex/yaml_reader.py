@@ -28,7 +28,9 @@ class YAMLReader():
                 prop_list = yaml.load(f.read())
                 self.log.debug("Reading single file from %s." % self.in_file)
                 self.log.debug("File contents: %s." % prop_list)
-                return prop_list
+                self.tests[self.in_file] = prop_list
+
+            return self.tests
 
         # this block reads and parses yaml from multiple files
         elif self.in_dir is not None:
