@@ -43,6 +43,7 @@ def main(argv):
         g = CodeGenerator(options.out_dir, yaml_data)
         # Currently generateCode also persists the code to the output dir.
         # TODO: Decide if generateCode should also persist. Does there need to be a preview or test option here?
+        # The generated code should be persistent.  Is there a way to detect a change that would trigger an update? - Alex
         g.generateCode()
 
     if options.exec_code:

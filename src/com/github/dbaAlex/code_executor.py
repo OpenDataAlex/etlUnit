@@ -21,6 +21,7 @@ class CodeExecutor():
         from os.path import isfile, join
 
         # TODO: Should this list every python file in the out_dir? What if we didn't create it? How do we mitigate that?
+        # We can mitigate it via the formatting of the name of the files, a specific fingerprint, etc.  There are a few options... - Alex
         # get a list of all files from out_dir that end with .py
         files = [f for f in listdir(self.out_dir) if isfile(join(self.out_dir, f)) and f.endswith(".py")]
 
