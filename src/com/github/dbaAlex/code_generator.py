@@ -11,6 +11,7 @@ class CodeGenerator():
         and generating code from it by filling in templates.
     """
 
+    # TODO: Determine if the array passed into the class is a single yaml array or if it is multile arrays from files
     def __init__(self, out_dir, data):
         self.log = logging.getLogger(name='CodeGenerator')
         self.log.setLevel(etlunit_config['logging_level'])
