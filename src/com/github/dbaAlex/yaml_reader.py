@@ -21,8 +21,6 @@ class YAMLReader():
         self.out_dir = out_dir
         self.tests = {}
 
-    # TODO: Work on nested yaml. It crashes the scanner when you have a few levels deep.
-    # How deep is too deep?  There should be some way of handling the nested yaml. - Alex
     def readTests(self):
         # this block reads and parses yaml from an individual file
         if self.in_file is not None:
