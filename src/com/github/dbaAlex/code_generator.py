@@ -30,10 +30,12 @@ class CodeGenerator():
             * If parent is present, then it needs to extend a fixture
         """
         #TODO: Maybe we should have a yaml validation class?
+        #Totaly agree - that makes perfect sense.
         from jinja2 import Environment, FileSystemLoader
         from time import strftime, gmtime
 
         # TODO: Find a more efficient way to pull in this template other than ../
+        # Is is possible to parameterize the template directory?  It should be a static location... - Alex
         out_path = "%s/../../../../templates/" % os.path.dirname(os.path.abspath(__file__))
         j2_env = Environment(loader=FileSystemLoader(out_path), trim_blocks=True)
 
