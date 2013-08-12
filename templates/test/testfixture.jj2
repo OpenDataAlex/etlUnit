@@ -1,0 +1,10 @@
+{{ header }}
+import unittest
+
+class {{ fixture }}(unittest.TestCase):
+
+    def setUp(self):
+        print "Fixture setup"
+
+    def tearDown(self):
+        print "Fixture teardown"

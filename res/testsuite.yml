@@ -4,6 +4,8 @@ connections:
     connection: 
         name: test conn
 
+fixture: testing
+
 setup: 
     sql: 
         stmt: select * from stuff

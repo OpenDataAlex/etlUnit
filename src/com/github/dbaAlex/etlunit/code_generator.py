@@ -42,6 +42,14 @@ class CodeGenerator():
         out_path = "%s/../../../../../templates/test/" % os.path.dirname(os.path.abspath(__file__))
         j2_env = Environment(loader=FileSystemLoader(out_path), trim_blocks=True)
 
+        # Header lines created here and added to the templates as required
+        header = "#!/usr/bin/python\n" \
+                 "#\n" \
+                 "# This file was created by etlUnit.\n#" \
+                 " Create date: %s\n" \
+                 "#\n" % \
+                 strftime("%a, %d %b %Y %X +0000", gmtime())
+
         for yml in self.yaml_data.keys():
             self.log.info("Generating code from %s..." % yml)
             self.yml_data = self.yaml_data[yml]
@@ -51,28 +59,31 @@ class CodeGenerator():
                 if self.yml_data['fixture'] is not None:
                     self.fixture = self.yml_data['fixture']
                     self.template_output = j2_env.get_template("testfixture.jj2")\
-                        .render(create_date=strftime("%a, %d %b %Y %X +0000", gmtime()),
+                        .render(header=header,
                                 fixture=self.fixture)
+
+                    self.persist_output(self.yml_data['fixture'], self.template_output, test)
             except KeyError:
                 self.fixture = "unittest.TestCase"  # Default value for fixture
                 self.log.info("Fixture not present, generating TestSuite...")
             finally:
                 self.template_output = j2_env.get_template("testsuite.jj2") \
-                    .render(create_date=strftime("%a, %d %b %Y %X +0000", gmtime()),
+                    .render(header=header,
                             fixture=self.fixture,
                             tests=self.yml_data['tests'],
                             suitename=self.yml_data['name'].replace(' ', ''))
 
-            if test:
-                self.log.testing('\n' + self.template_output + '\n')
-            else:
-                # lets persist by default and add a preview option
-                self.persist_output(self.yml_data, self.template_output)
+                self.persist_output(self.yml_data['name'], self.template_output, test)
         self.log.info("Code generation complete.")
 
-    def persist_output(self, yml, output):
-        with open("%s/%s%s" % (self.out_dir, str(yml['name']).replace(' ', ''), self.file_ext), 'w') as f:
-            os.chmod(f.name, 0770)
+    def persist_output(self, name, output, test):
+        if test:
+            self.log.testing('\n' + self.template_output + '\n')
+        else:
+            file_path = "%s/%s%s" % (self.out_dir, name.replace(' ', ''), self.file_ext)
+            self.log.debug("Writing %s" % file_path)
+            with open(file_path, 'w') as f:
+                os.chmod(f.name, 0770)
 
-            f.write(output)
-            f.close()
+                f.write(output)
+                f.close()
