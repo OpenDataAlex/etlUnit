@@ -18,8 +18,6 @@ class CodeGenerator():
         self.log.setLevel(etlunit_config['logging_level'])
         self.log.addHandler(console)
 
-        self.file_ext = '.py'
-
         self.yaml_data = data
         self.out_dir = out_dir
 
@@ -80,7 +78,7 @@ class CodeGenerator():
         if test:
             self.log.testing('\n' + self.template_output + '\n')
         else:
-            file_path = "%s/%s%s" % (self.out_dir, name.replace(' ', ''), self.file_ext)
+            file_path = "%s/%s.py" % (self.out_dir, name.replace(' ', ''))
             self.log.debug("Writing %s" % file_path)
             with open(file_path, 'w') as f:
                 os.chmod(f.name, 0770)
