@@ -6,6 +6,9 @@ import os
 import yaml
 
 # Begin CustomLogging
+# this import adds the additional log levels I created
+import custom_logging
+
 # create console handler and set level to info
 console = logging.StreamHandler()
 console.setLevel(logging.DEBUG)
@@ -46,12 +49,16 @@ for the_path in settings_fs_locs:
 
 
 if not settings_loaded:
-    settings_log.error("Could not find settings file in {}".format(','.join(settings_fs_locs)))
-    exit()
+    settings_log.error("Could not find settings file in {}. Using defaults where present".format(','.join(settings_fs_locs)))
+    # For now there is nothing in the settings file that is required for operation. Removing the exit call.
+    # exit()
 
 # INFO = 20
+# TESTING = 21
 # DEBUG = 10
-console.level = etlunit_config['logging_level']
-
-## Currently required attributes set in the config are:
-#   logging_level: 10
+# TRACE = 5
+try:
+    console.level = etlunit_config['logging_level']
+except KeyError:
+    etlunit_config['logging_level'] = 20  # set default level to info
+    console.level = etlunit_config['logging_level']
