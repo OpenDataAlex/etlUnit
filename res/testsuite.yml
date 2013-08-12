@@ -3,6 +3,7 @@ name: test suite
 connections: 
     connection: 
         name: test conn
+
 setup: 
     sql: 
         stmt: select * from stuff
