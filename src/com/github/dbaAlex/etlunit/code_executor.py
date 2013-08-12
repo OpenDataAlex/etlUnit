@@ -1,7 +1,7 @@
 __author__ = 'coty'
 
 import logging
-from settings import etlunit_config, console
+from src.com.github.dbaAlex.utils.settings import etlunit_config, console
 
 
 class CodeExecutor():
@@ -16,7 +16,7 @@ class CodeExecutor():
 
         self.out_dir = out_dir
 
-    def execute(self):
+    def execute(self, test):
         from os import listdir
         from os.path import isfile, join
 
@@ -30,6 +30,10 @@ class CodeExecutor():
         import subprocess
         for f in files:
             file_path = "%s/%s" % (self.out_dir, f)
-            self.log.debug(file_path)
-            # Using subprocess versus execfile because the unittests will not execute under execfile
-            subprocess.call(file_path)
+
+            if test:
+                self.log.testing("Would execute %s" % file_path)
+            else:
+                self.log.debug(file_path)
+                # Using subprocess versus execfile because the unittests will not execute under execfile
+                subprocess.call(file_path)

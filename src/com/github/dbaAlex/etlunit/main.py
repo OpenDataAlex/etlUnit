@@ -28,6 +28,8 @@ def main(argv):
                       help="Generate new test code.")
     parser.add_option("-e", "--exec", dest="exec_code", default=False, action="store_true",
                       help="Execute test code.")
+    parser.add_option("-t", "--test", dest="test_run", default=False, action="store_true",
+                      help="Run app as tests. Does not persist generated code or execute code.")
     (options, args) = parser.parse_args()
 
     # validating options
@@ -35,21 +37,19 @@ def main(argv):
         parser.error("Options infile and indir are mutually exclusive. Please choose one.")
 
     if options.gen_code:
-        from yaml_reader import YAMLReader
+        from src.com.github.dbaAlex.etlunit.yaml_reader import YAMLReader
         t = YAMLReader(options.in_file, options.in_dir, options.out_dir)
         yaml_data = t.readTests()
 
-        from code_generator import CodeGenerator
+        from src.com.github.dbaAlex.etlunit.code_generator import CodeGenerator
         g = CodeGenerator(options.out_dir, yaml_data)
-        # Currently generateCode also persists the code to the output dir.
-        # TODO: Decide if generateCode should also persist. Does there need to be a preview or test option here?
-        # The generated code should be persistent.  Is there a way to detect a change that would trigger an update? - Alex
-        g.generateCode()
+        # TODO: Decide if there should be a way to check if generated code should be updated or not.
+        g.generateCode(options.test_run)
 
     if options.exec_code:
-        from code_executor import CodeExecutor
+        from src.com.github.dbaAlex.etlunit.code_executor import CodeExecutor
         e = CodeExecutor(options.out_dir)
-        e.execute()
+        e.execute(options.test_run)
 
 if __name__ == "__main__":
     main(sys.argv[1:])

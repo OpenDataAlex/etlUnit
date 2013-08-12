@@ -1,8 +1,9 @@
 __author__ = 'coty'
 
 import logging
-from settings import etlunit_config, console
 import os
+
+from src.com.github.dbaAlex.utils.settings import etlunit_config, console
 
 
 class CodeGenerator():
@@ -22,7 +23,7 @@ class CodeGenerator():
         self.yaml_data = data
         self.out_dir = out_dir
 
-    def generateCode(self):
+    def generateCode(self, test):
         """
             Generate code has to be smart enough to determine if the json array should generate a test case, or a
             fixture or if it needs to generate both.
@@ -38,13 +39,14 @@ class CodeGenerator():
         # TODO: Find a more efficient way to pull in this template other than ../
         # Is is possible to parameterize the template directory?  It should be a static location... - Alex
         # Maybe we can use the PackageLoader
-        out_path = "%s/../../../../templates/" % os.path.dirname(os.path.abspath(__file__))
+        out_path = "%s/../../../../../templates/test/" % os.path.dirname(os.path.abspath(__file__))
         j2_env = Environment(loader=FileSystemLoader(out_path), trim_blocks=True)
 
         for yml in self.yaml_data.keys():
             self.log.info("Generating code from %s..." % yml)
             self.yml_data = self.yaml_data[yml]
 
+            # TODO: Determine how we handle dependencies on single files.
             try:
                 if self.yml_data['fixture'] is not None:
                     self.fixture = self.yml_data['fixture']
@@ -58,13 +60,17 @@ class CodeGenerator():
                 self.template_output = j2_env.get_template("testsuite.jj2") \
                     .render(create_date=strftime("%a, %d %b %Y %X +0000", gmtime()),
                             fixture=self.fixture,
-                            tests=self.yml_data['tests'])
+                            tests=self.yml_data['tests'],
+                            suitename=self.yml_data['name'].replace(' ', ''))
 
-            self.persist_output(self.yml_data, self.template_output)
+            if test:
+                self.log.testing('\n' + self.template_output + '\n')
+            else:
+                # lets persist by default and add a preview option
+                self.persist_output(self.yml_data, self.template_output)
         self.log.info("Code generation complete.")
 
     def persist_output(self, yml, output):
-        # TODO: Decide if naming the files based on the test name from the yaml is ok
         with open("%s/%s%s" % (self.out_dir, str(yml['name']).replace(' ', ''), self.file_ext), 'w') as f:
             os.chmod(f.name, 0770)
 
