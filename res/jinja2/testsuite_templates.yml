@@ -1,0 +1,66 @@
+name: test suite
+connections:
+    connection:
+        name: test conn
+setup: #potential for multiple sql statements?  Would there ever be anything other than INSERTs?  What about comparing, validating, and updating schema?
+    sql:
+        stmt:
+        etl: etl stuff
+children:
+  - suite:  suiteName
+      ignore: yes|no
+
+tests:
+    - test:
+        name: test1
+        sql:
+            stmt: |
+                select * from stuff
+        result: 1
+    - test:
+        name: test2
+        sql:
+            stmt: select * from stuff
+        result: 2
+    - test:
+        name:  test3
+        template:  nullValue
+          testColumn: table_id #parameterize?  i.e. for a given suite, table_id should be the same
+          testTable:  table_name #parameterize?  i.e. for a given suite, table name should be the same
+          filterColumn: column_name #this could be different for this type of test
+        result: 0
+    - test:
+        name:  test4
+        template:  recordCount
+          testColumn:  table_id
+          testTable:  table_name
+          filterColumn:  column_name
+          filterValue: column_value #parameterize?  This should be based off of the fixture processed.
+        result: 1
+    - test:
+        name:  test5
+        template:  upperCheck
+          testColumn:  column_name
+          testTable:  table_name
+          filterColumn: column_name #will likely be an id for the record we are searching for.
+          filterValue:  column_value
+        result: true|false
+    - test:
+        name:  test6
+        template:  lowerCheck
+          testColumn:  column_name
+          testTable:  table_name
+          filterColumn: column_name #will likely be an id for the record we are searching for.
+          filterValue:  column_value
+        result: true|false
+    - test:
+        name:  test7
+        template:  valueCompare
+          testColumn:  column_name
+          testTable:  table_name
+          filterColumn: column_name #will likely be an id for the record we are searching for.
+          filterValue:  column_value
+          compareValue:  compare_value #potentially have the option to match fixture value?
+        result:  true|false
+
+teardown: None
