@@ -1,0 +1,24 @@
+name: test suite
+parentSuite:  
+connections:
+    connection:
+        name: test conn
+setup:
+    sql:
+        stmt: select * from stuff
+        etl: etl stuff
+
+tests:
+    - test:
+        name: test1
+        sql:
+            stmt: |
+                select * from stuff
+        result: 1
+    - test:
+        name: test2
+        sql:
+            stmt: select * from stuff
+        result: 2
+
+teardown: None

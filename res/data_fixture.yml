@@ -1,0 +1,10 @@
+sourceName: name
+  tableName:  name
+    record:
+      colName: colValue
+      ...
+    record:
+      colName:
+      ...
+    ...
+  tableName:
