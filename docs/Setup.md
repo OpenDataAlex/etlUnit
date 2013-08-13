@@ -5,6 +5,8 @@ If on Linux, install the following RPMs:
     oracle-instantclient11.1-basic-11.1.0.7.0-1.x86_64.rpm
     oracle-instantclient11.1-devel-11.1.0.7.0-1.x86_64.rpm
 
+Link to those RPMs: http://www.oracle.com/technetwork/topics/linuxx86-64soft-092277.html
+
 After that, add the following line to /etc/ld.so.conf.d/oracle.conf:
 
     /usr/lib/oracle/11.1/client64/lib/
