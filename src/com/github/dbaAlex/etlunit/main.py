@@ -38,7 +38,7 @@ def main(argv):
 
     if options.gen_code:
         from src.com.github.dbaAlex.etlunit.yaml_reader import YAMLReader
-        t = YAMLReader(options.in_file, options.in_dir, options.out_dir)
+        t = YAMLReader(options.in_file, options.in_dir)
         yaml_data = t.readTests()
 
         from src.com.github.dbaAlex.etlunit.code_generator import CodeGenerator

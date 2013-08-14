@@ -13,14 +13,13 @@ class YAMLReader():
         Class to read yaml files and produce code based on templates that we provide.
     """
 
-    def __init__(self, in_file, in_dir, out_dir):
+    def __init__(self, in_file, in_dir):
         self.log = logging.getLogger(name='YAMLReader')
         self.log.setLevel(etlunit_config['logging_level'])
         self.log.addHandler(console)
 
         self.in_file = in_file
         self.in_dir = in_dir
-        self.out_dir = out_dir
         self.tests = {}
 
     def readTests(self):
