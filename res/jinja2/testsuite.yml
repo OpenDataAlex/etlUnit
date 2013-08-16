@@ -1,27 +1,15 @@
 name: test suite
 
 connections: 
-    connection: 
-        name: test conn
+    connection: test conn
 
-fixture: testing
-
-setup: 
-    sql: 
-        stmt: select * from stuff
-        etl: etl stuff
+fixture: fixture
 
 tests: 
     - test: 
-        name: test1
-        sql: 
-            stmt: |
-                select * from stuff
-        result: 1
-    - test: 
-        name: test2
-        sql: 
-            stmt: select * from stuff
-        result: 2
-
-teardown: None
+        name: case1
+            connection: test conn
+            table: test
+            count: True
+        results:
+            count: 2

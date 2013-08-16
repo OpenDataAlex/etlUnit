@@ -7,7 +7,7 @@ class DB_Connector():
     __table_name = 'aw_jobexecution'
 
     def __init__(self, connection):
-        engine = create_engine('{}://{}:{}@{}:{}/{}'.format(
+        self.engine = create_engine('{}://{}:{}@{}:{}/{}'.format(
             connection['dbtype'],
             connection['user'],
             connection['pass'],
@@ -17,9 +17,9 @@ class DB_Connector():
         ))
 
         self.meta = MetaData()
-        self.insp = inspect(engine)
+        self.insp = inspect(self.engine)
 
-        Session = sessionmaker(bind=engine)
+        Session = sessionmaker(bind=self.engine)
         self.session = Session()
 
     def getTable(self, table_name):
@@ -28,21 +28,21 @@ class DB_Connector():
 
         return table
 
-    def getAll(self):
-        table = self.getTable(self.__table_name)
-        res = self.session.query(table).all()
-        json_res = self.to_json(res, table)
+    # def getAll(self):
+    #     table = self.getTable(self.__table_name)
+    #     res = self.session.query(table).all()
+    #     json_res = self.to_json(res, table)
+    #
+    #     return json_res
 
-        return json_res
-
-    def getOne(self, name):
-        table = self.getTable(self.__table_name)
+    # def getOne(self, name):
+    #     table = self.getTable(self.__table_name)
         # get values where name is like the name param
-        res = self.session.query(table)\
-            .filter(table.columns.name.like("%{}%".format(name))).all()
-        json_res = self.to_json(res, table)
-
-        return json_res
+        # res = self.session.query(table)\
+        #     .filter(table.columns.name.like("%{}%".format(name))).all()
+        # json_res = self.to_json(res, table)
+        #
+        # return json_res
 
     def to_json(self, qry_results, table):
         """

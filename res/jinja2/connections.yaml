@@ -1,0 +1,7 @@
+- test conn:
+    dbname: testing
+    dbtype: mysql
+    user: py
+    pass: py_pass
+    host: localhost
+    port: 3006
