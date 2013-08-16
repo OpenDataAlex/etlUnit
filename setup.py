@@ -9,6 +9,7 @@ setup(name='etlUnit',
       author='Alex Meadows, Coty Sutherland',
       install_requires=[
           'pyyaml',
-          'jinja2'
+          'jinja2',
+          'sqlalchemy'
       ],
 )
