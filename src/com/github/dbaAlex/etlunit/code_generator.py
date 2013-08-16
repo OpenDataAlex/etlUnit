@@ -53,9 +53,11 @@ class CodeGenerator():
             self.yml_data = self.yaml_data[yml]
 
             # TODO: Determine how we handle dependencies on single files.
+            # TODO: Added fixture definition to the mix. Currently it generates a fixture but it has no variables.
             try:
                 if self.yml_data['fixture'] is not None:
                     self.fixture = self.yml_data['fixture']
+                    # TODO: At this point we need to try and read in the fixture definition and THEN generate from the template.
                     self.template_output = j2_env.get_template("testfixture.jj2")\
                         .render(header=header,
                                 fixture=self.fixture)
