@@ -38,7 +38,7 @@ class CodeGenerator():
         # Is is possible to parameterize the template directory?  It should be a static location... - Alex
         # Maybe we can use the PackageLoader
         out_path = "%s/../../../../../templates/test/" % os.path.dirname(os.path.abspath(__file__))
-        j2_env = Environment(loader=FileSystemLoader(out_path), trim_blocks=True)
+        j2_env = Environment(loader=FileSystemLoader(out_path), trim_blocks=True, lstrip_blocks=True)
 
         # Header lines created here and added to the templates as required
         header = "#!/usr/bin/python\n" \
@@ -56,11 +56,16 @@ class CodeGenerator():
             # TODO: Added fixture definition to the mix. Currently it generates a fixture but it has no variables.
             try:
                 if self.yml_data['fixture'] is not None:
+                    from yaml_reader import YAMLReader
                     self.fixture = self.yml_data['fixture']
-                    # TODO: At this point we need to try and read in the fixture definition and THEN generate from the template.
+                    reader = YAMLReader("../../../../../res/jinja2/%s.yml" % self.fixture, None)
+                    fixture_data = reader.readTests()["../../../../../res/jinja2/%s.yml" % self.fixture]
+
                     self.template_output = j2_env.get_template("testfixture.jj2")\
                         .render(header=header,
-                                fixture=self.fixture)
+                                fixture=self.fixture,
+                                setup=fixture_data['setup'],
+                                teardown=fixture_data['teardown'])
 
                     self.persist_output(self.yml_data['fixture'], self.template_output, test)
             except KeyError:
