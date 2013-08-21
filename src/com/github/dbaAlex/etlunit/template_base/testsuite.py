@@ -12,17 +12,6 @@ from testfixture import *
 
 class MyTestSuite(MyTestFixture):
 
-    connections = {
-        'test conn': {
-            'dbname': 'testing',
-            'dbtype': 'mysql',
-            'user': 'py',
-            'pass': 'py_pass',
-            'host': 'localhost',
-            'port': '3006'
-        }
-    }
-
     def test_testcase1(self):
         connector = DB_Connector('test conn')
 
@@ -49,4 +38,4 @@ class MyTestSuite(MyTestFixture):
         self.assertEqual(test['results']['result'], result)
 
 if __name__ == "__main__":
-    unittest.main(verbosity=2, testRunner=xmlrunner.XMLTestRunner(output='.'))
+    unittest.main(verbosity=2, testRunner=xmlrunner.XMLTestRunner(output='/tmp/test/'))

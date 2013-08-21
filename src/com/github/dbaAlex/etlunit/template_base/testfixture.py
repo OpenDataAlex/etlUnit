@@ -10,17 +10,6 @@ from sqlalchemy_connector import DB_Connector
 
 class MyTestFixture(unittest.TestCase):
 
-    connections = {
-        'test conn': {
-            'dbname': 'testing',
-            'dbtype': 'mysql',
-            'user': 'py',
-            'pass': 'py_pass',
-            'host': 'localhost',
-            'port': '3006'
-        }
-    }
-
     connector = DB_Connector('test conn')
 
     def setUp(self):
