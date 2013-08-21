@@ -1,16 +1,10 @@
     def test_{{ test['name']|join('') }}(self):
         connector = DB_Connector('{{ test['connection'] }}')
         {% if test['count'] %}
-        table = connector.getTable('{{ test['table'] }}')
-
-        result = connector.session.query(table).count()
+        result = connector.getCount('{{ test['table'] }}')
         expectedResult = {{ test['count'] }}
         {% elif test['select'] %}
-        table = connector.getTable('{{ test['from'] }}')
-        conn = connector.engine.connect()
-        sel = table.select()
-        result = conn.execute(sel)
-        {# result = connector.session.query('{{ test['from'] + '.' + test['select']|join('\', \'') }}').all() #}
+        result = connector.selectFrom('{{ test['from'] }}')
         expectedResult = {{ test['results'] }}
         {% endif %}
 
