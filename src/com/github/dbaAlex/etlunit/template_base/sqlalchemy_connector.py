@@ -24,27 +24,36 @@ class DB_Connector():
         Session = sessionmaker(bind=self.engine)
         self.session = Session()
 
+        self.conn = self.engine.connect()
+
     def getTable(self, table_name):
         table = Table(table_name, self.meta)
         self.insp.reflecttable(table, None)
 
         return table
 
-    # def getAll(self):
-    #     table = self.getTable(self.__table_name)
-    #     res = self.session.query(table).all()
-    #     json_res = self.to_json(res, table)
-    #
-    #     return json_res
+    def getCount(self, table_name):
+        table = self.getTable(table_name)
+        res = self.session.query(table).count()
 
-    # def getOne(self, name):
-    #     table = self.getTable(self.__table_name)
-        # get values where name is like the name param
-        # res = self.session.query(table)\
-        #     .filter(table.columns.name.like("%{}%".format(name))).all()
-        # json_res = self.to_json(res, table)
-        #
-        # return json_res
+        return res
+
+    def insertInto(self, table_name, records):
+        table = self.getTable(table_name)
+        ins = table.insert().values(records)
+        self.conn.execute(ins)
+
+    def deleteFrom(self, table_name):
+        table = self.getTable(table_name)
+        delete = table.delete()
+        self.conn.execute(delete)
+
+    def selectFrom(self, table_name):
+        table = self.getTable(table_name)
+        res = self.session.query(table).all()
+        json_res = self.to_json(res, table)
+
+        return json_res
 
     def to_json(self, qry_results, table):
         """
@@ -67,7 +76,8 @@ class DB_Connector():
                     else:
                         table_json[col.name] = value
                 results.append(table_json)
-            return json.dumps(results, cls=CustomEncoder)  # use the custom encoder to jsonify datetimes
+            # return json.dumps(results, cls=CustomEncoder)  # use the custom encoder to jsonify datetimes
+            return results
         else:
             return self.to_json([qry_results], table)
 
@@ -82,4 +92,7 @@ class CustomEncoder(json.JSONEncoder):
         return json.JSONEncoder.default(self, obj)
 
 if __name__ == '__main__':
-    DB_Connector({})
+    connector = DB_Connector('test conn')
+    if connector.getCount('test') == 0:
+        connector.insertInto('test', [{'test': 0}])
+    print connector.selectFrom('test')
