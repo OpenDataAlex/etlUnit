@@ -14,8 +14,18 @@ tests:
   - name: case2
     connection: test conn
     select:
-        - id
+        - test
     from: test
     results:
-        - id: 0
-        - id: 1
+        - test: 0
+        - test: 1
+
+  - name: case3
+    connection: test conn
+    table: test
+    count: 3
+
+  - name: case4
+    connection: test conn
+    table: test
+    count: 4
