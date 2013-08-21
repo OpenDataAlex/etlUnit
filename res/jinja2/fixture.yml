@@ -1,13 +1,10 @@
 setup:
-    test conn:
-        table: test
-        records:
-            - 'test': 0
-            - 'test': 1
+    connection: test conn
+    table: test
+    records:
+        - 'test': 0
+        - 'test': 1
 
 teardown:
-    test conn:
-        table: test
-        where:
-            - 'test': 0
-            - 'test': 1
+    connection: test conn
+    table: test

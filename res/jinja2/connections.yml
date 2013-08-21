@@ -1,4 +1,4 @@
-- test conn:
+test conn:
     dbname: testing
     dbtype: mysql
     user: py

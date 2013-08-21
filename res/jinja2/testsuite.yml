@@ -1,15 +1,21 @@
 name: test suite
 
-connections: 
-    connection: test conn
+connections:
+  connection: test conn
 
 fixture: fixture
 
-tests: 
-    - test: 
-        name: case1
-            connection: test conn
-            table: test
-            count: True
-        results:
-            count: 2
+tests:
+  - name: case1
+    connection: test conn
+    table: test
+    count: 2
+
+  - name: case2
+    connection: test conn
+    select:
+        - id
+    from: test
+    results:
+        - id: 0
+        - id: 1
