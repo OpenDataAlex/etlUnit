@@ -58,8 +58,8 @@ class CodeGenerator():
                 if self.yml_data['fixture'] is not None:
                     from yaml_reader import YAMLReader
                     self.fixture = self.yml_data['fixture']
-                    reader = YAMLReader("../../../../../res/jinja2/%s.yml" % self.fixture, None)
-                    fixture_data = reader.readTests()["../../../../../res/jinja2/%s.yml" % self.fixture]
+                    reader = YAMLReader("../../../../../res/%s.yml" % self.fixture, None)
+                    fixture_data = reader.readTests()["../../../../../res/%s.yml" % self.fixture]
 
                     self.template_output = j2_env.get_template("testfixture.jj2")\
                         .render(header=header,
