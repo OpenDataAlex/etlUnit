@@ -4,9 +4,11 @@ from sqlalchemy import create_engine, MetaData, Table, inspect
 
 class DB_Connector():
 
-    __table_name = 'aw_jobexecution'
+    def __init__(self, conn_name):
 
-    def __init__(self, connection):
+        from connections_reader import connections
+        connection = connections[conn_name]
+
         self.engine = create_engine('{}://{}:{}@{}:{}/{}'.format(
             connection['dbtype'],
             connection['user'],
@@ -78,3 +80,6 @@ class CustomEncoder(json.JSONEncoder):
             # is iso format ok, or do we want something different?
             return obj.isoformat()
         return json.JSONEncoder.default(self, obj)
+
+if __name__ == '__main__':
+    DB_Connector({})
