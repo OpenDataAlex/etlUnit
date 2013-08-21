@@ -1,10 +1,27 @@
 {{ header }}
 import unittest
+from sqlalchemy_connector import DB_Connector
+
 
 class {{ fixture }}(unittest.TestCase):
 
     def setUp(self):
+        connector = DB_Connector('{{ setup['connection'] }}')
+        conn = connector.engine.connect()
+        table = connector.getTable('{{ setup['table'] }}')
+        records = {{ setup['records'] }}
+
+        ins = table.insert().values(records)
+        conn.execute(ins)
+
         print "Fixture setup"
 
     def tearDown(self):
+        connector = DB_Connector('{{ teardown['connection'] }}')
+        conn = connector.engine.connect()
+        table = connector.getTable('{{ teardown['table'] }}')
+
+        delete = table.delete()
+        conn.execute(delete)
+
         print "Fixture teardown"

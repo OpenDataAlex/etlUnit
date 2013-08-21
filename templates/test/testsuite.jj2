@@ -1,6 +1,8 @@
 {{ header }}
 import unittest
-{% if fixture %}
+import xmlrunner
+from sqlalchemy_connector import DB_Connector
+{% if fixture != 'unittest.TestCase' %}
 from {{ fixture }} import *
 {% endif %}
 
@@ -13,4 +15,4 @@ class {{ suitename }}({{ fixture }}):
 {% endfor %}
     
 if __name__ == "__main__":
-    unittest.main(verbosity=2)
+    unittest.main(verbosity=2, testRunner=xmlrunner.XMLTestRunner(output='/tmp/test/'))
