@@ -24,7 +24,7 @@ class MyTestSuite(MyTestFixture):
     }
 
     def test_testcase1(self):
-        connector = DB_Connector(self.connections['test conn'])
+        connector = DB_Connector('test conn')
 
         test = {
             'test conn': {

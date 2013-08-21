@@ -21,7 +21,7 @@ class MyTestFixture(unittest.TestCase):
         }
     }
 
-    connector = DB_Connector(connections['test conn'])
+    connector = DB_Connector('test conn')
 
     def setUp(self):
         print 'Setting up fixture'
@@ -37,26 +37,20 @@ class MyTestFixture(unittest.TestCase):
 
         conn = self.connector.engine.connect()
         table = self.connector.getTable(setup['test conn']['table'])
+        records = setup['test conn']['records']
 
-        for item in setup['test conn']['records']:
-            ins = table.insert().values(test=item['test'])
-            conn.execute(ins)
+        ins = table.insert().values(records)
+        conn.execute(ins)
 
     def tearDown(self):
         print "Tearing down fixture"
         teardown = {
             'test conn': {
                 'table': 'test',
-                'where': [
-                    {'test': 0},
-                    {'test': 1},
-                ]
             }
         }
 
         conn = self.connector.engine.connect()
         table = self.connector.getTable(teardown['test conn']['table'])
-
-        for item in teardown['test conn']['where']:
-            delete = table.delete(table._columns.test!=item['test'])
-            conn.execute(delete)
+        delete = table.delete()
+        conn.execute(delete)
