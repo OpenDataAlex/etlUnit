@@ -6,12 +6,12 @@ connections:
 fixture: fixture
 
 tests:
-  - name: case1
+  - name: test_count
     connection: test conn
     table: test
     count: 2
 
-  - name: case2
+  - name: test_select
     connection: test conn
     select:
         - test
@@ -20,12 +20,15 @@ tests:
         - test: 0
         - test: 1
 
-  - name: case3
+  - name: test_bad_column_select
     connection: test conn
-    table: test
-    count: 3
+    select:
+        - bad_id
+    from: test
+    results:
+        - bad_id: 0
 
-  - name: case4
+  - name: test_bad_table_count
     connection: test conn
-    table: test
+    table: bad
     count: 4
