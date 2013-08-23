@@ -1,11 +1,12 @@
     def test_{{ test['name']|join('') }}(self):
         connector = DB_Connector('{{ test['connection'] }}')
-        {% if test['count'] %}
+    {% if test['count'] %}
         result = connector.getCount('{{ test['table'] }}')
         expectedResult = {{ test['count'] }}
-        {% elif test['select'] %}
+    {% elif test['select'] %}
         result = connector.selectFrom('{{ test['from'] }}')
         expectedResult = {{ test['results'] }}
-        {% endif %}
+    {% endif %}
 
         self.assertEqual(expectedResult, result)
+
