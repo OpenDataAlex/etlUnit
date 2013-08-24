@@ -3,7 +3,7 @@ import unittest
 
 class TestCase(unittest.TestCase):
 
-    def test_case1(self):
+    def test_dummy(self):
         expectedResult = "test"
         result = "test"
 
