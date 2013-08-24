@@ -1,6 +1,8 @@
 __author__ = 'coty'
 
 from setuptools import setup, find_packages
+import etlunit
+
 
 setup(
     name='etlUnit',
