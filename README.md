@@ -1,4 +1,4 @@
-etlUnit
+What is etlUnit anyway?
 =======
 
 etlUnit was created because there is no testing framework that truly addresses ETL testing in a manner that fits into
@@ -7,3 +7,8 @@ This is not surprising due to the nature of data integration tools because many 
  well outside of their tool suites.  etlUnit is designed to use black/grey box testing practices as well as utilize the
  best practices of the xUnit family of testing tools.
 
+Things to come with the project:
+* ReadTheDocs page
+* TravisCI integration
+* Quickstart
+* What non-Python deps do we have and how do you install them
