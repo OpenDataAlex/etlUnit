@@ -1,7 +1,7 @@
 etlUnit
 =======
 
-[![Build Status](https://travis-ci.org/csutherl/etlUnit.png?branch=develop)](https://travis-ci.org/csutherl/etlUnit)
+[![Build Status](https://travis-ci.org/dbaAlex/etlUnit.png?branch=develop)](https://travis-ci.org/dbaAlex/etlUnit)
 
 What is etlUnit anyway?
 =======
