@@ -14,6 +14,6 @@ This is not surprising due to the nature of data integration tools because many 
 
 Things to come with the project:
 * ReadTheDocs page
-* TravisCI integration
+* TravisCI integration (work in progress now!)
 * Quickstart
 * What non-Python deps do we have and how do you install them
