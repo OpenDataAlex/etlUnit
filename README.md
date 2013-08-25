@@ -1,3 +1,8 @@
+etlUnit
+=======
+
+[![Build Status](https://travis-ci.org/csutherl/etlUnit.png?branch=develop)](https://travis-ci.org/csutherl/etlUnit)
+
 What is etlUnit anyway?
 =======
 
