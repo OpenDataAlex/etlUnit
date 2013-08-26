@@ -13,7 +13,6 @@ This is not surprising due to the nature of data integration tools because many 
  best practices of the xUnit family of testing tools.
 
 Things to come with the project:
-* ReadTheDocs page
-* TravisCI integration (work in progress now!)
+* ReadTheDocs page (In progress)
 * Quickstart
 * What non-Python deps do we have and how do you install them
