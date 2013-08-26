@@ -6,10 +6,10 @@ Any and all contributions, bug reports, bug fixes, enhancement requests, and ide
 
 * Create a new, Python 2.7+ virtualenv and install the requirements via pip: 
 
-    $ pip install -r requirements.txt
+        $ pip install -r requirements.txt
 
 * Make sure you have a [GitHub account](https://github.com/signup/free)
-* Submit issues/suggestions to the [GitHub issue tracker](https://github.com/dbaAlex/etlUnit/issues)
+* Submit issues/suggestions to the [Github issue tracker](https://github.com/dbaAlex/etlUnit/issues)
   * For bugs, clearly describe the issue including steps to reproduce
   * For enhancement requests, be sure to indicate if you are willing to work on implementing the enhancement
     * Fork the repository on GitHub if you want to contribute code/docs
@@ -20,7 +20,7 @@ Any and all contributions, bug reports, bug fixes, enhancement requests, and ide
   * **All commits should be made to the develop branch** 
   * [Install git-flow](https://github.com/nvie/gitflow) and create a `feature` branch with the following command: 
         
-      $ git flow feature start <name of your feature>
+            $ git flow feature start <name of your feature>
 
 * Make commits of logical units with complete documentation.
 * Check for unnecessary whitespace with `git diff --check` before committing.
