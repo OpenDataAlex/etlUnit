@@ -38,8 +38,8 @@ The documentation for **etlUnit** can be found on Read the Docs [here](https://e
 
 The only dependencies that are not handled in python currently are the ones for SQLAlchemy to connect to datasources. Documentation on how to install these is as follows:
 
-* MySQL (Coming soon)
-* Oracle (Coming soon)
+* [MySQL](https://github.com/dbaAlex/etlUnit/blob/develop/docs/mysql_deps.md)
+* [Oracle](https://github.com/dbaAlex/etlUnit/blob/develop/docs/oracle_deps.md)
 
 ### Reporting Issues
 
