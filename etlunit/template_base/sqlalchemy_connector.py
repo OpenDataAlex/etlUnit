@@ -9,6 +9,9 @@ class DB_Connector():
         from etlunit.template_base.connections_reader import connections
         connection = connections[conn_name]
 
+        if connection is None:
+            exit()
+
         self.engine = create_engine('{}://{}:{}@{}:{}/{}'.format(
             connection['dbtype'],
             connection['user'],

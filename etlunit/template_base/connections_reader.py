@@ -12,4 +12,4 @@ try:
         connections = prop_list
 except:
     print "Unable to load connections file."
-    exit()
+    # exit()
