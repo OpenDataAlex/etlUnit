@@ -4,4 +4,4 @@ python:
 install: 
     - "pip install -r requirements.txt --use-mirrors"
 script:
-    - "python etlunit/test/test.py"
+    - "python setup.py test"
