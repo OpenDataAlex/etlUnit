@@ -4,6 +4,20 @@ from setuptools import setup, find_packages
 import etlunit
 
 
+from setuptools.command.test import test as TestCommand
+import sys
+
+class Tox(TestCommand):
+    def finalize_options(self):
+        TestCommand.finalize_options(self)
+        self.test_args = []
+        self.test_suite = True
+    def run_tests(self):
+        #import here, cause outside the eggs aren't loaded
+        import tox
+        errcode = tox.cmdline(self.test_args)
+        sys.exit(errcode)
+
 setup(
     name='etlUnit',
     version=etlunit.__version__,
@@ -26,6 +40,7 @@ setup(
         'Development Status :: 4 - Beta'
         'Natural Language :: English',
     ],
-    test_requires='unittest',
+    test_requires=['tox'],
+    cmdclass = {'tox': Tox},
     test_suite='etlunit.test'
 )
