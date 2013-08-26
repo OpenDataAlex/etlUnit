@@ -40,7 +40,7 @@ setup(
         'Development Status :: 4 - Beta'
         'Natural Language :: English',
     ],
-    test_requires=['tox'],
+    #test_requires=['tox'],
     cmdclass = {'tox': Tox},
     test_suite='etlunit.test'
 )
