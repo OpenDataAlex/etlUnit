@@ -1,7 +1,7 @@
 import unittest
 
 
-class TestCase(unittest.TestCase):
+class MyTestCase(unittest.TestCase):
 
     def test_dummy(self):
         expectedResult = "test"

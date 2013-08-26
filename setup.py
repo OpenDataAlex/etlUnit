@@ -25,5 +25,7 @@ setup(
         'Programming Language :: Python',
         'Development Status :: 4 - Beta'
         'Natural Language :: English',
-    ]
+    ],
+    test_requires='unittest',
+    test_suite='etlunit.test'
 )
