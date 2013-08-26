@@ -5,3 +5,4 @@ install:
     - "pip install -r requirements.txt --use-mirrors"
 script:
     - "python setup.py test"
+    - 'tox'
