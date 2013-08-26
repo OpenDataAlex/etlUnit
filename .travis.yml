@@ -7,3 +7,4 @@ install:
     - "pip install coveralls"
 script:
     - "coverage run --source=etlunit setup.py test"
+    - 'tox'
