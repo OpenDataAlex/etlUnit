@@ -15,14 +15,14 @@ After that, add the following line to /etc/ld.so.conf.d/oracle.conf:
     
 And execute:
 
-    ldconfig
+    $ ldconfig
 
 Then setup ORACLE_HOME:
 
-    export ORACLE_HOME=/usr/lib/oracle/11.1/client64
+    $ export ORACLE_HOME=/usr/lib/oracle/11.1/client64
 
 After that, you can pip install cx_Oracle:
 
-    pip install cx_Oracle
+    $ pip install cx_Oracle
 
 You're done!
