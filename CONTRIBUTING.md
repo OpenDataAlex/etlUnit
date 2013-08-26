@@ -29,7 +29,7 @@ Any and all contributions, bug reports, bug fixes, enhancement requests, and ide
   * Aim for 100% coverage on your code (Though I did not do this initially...)
     * If this is not possible, explain why in your commit message. This may be an indication that your code should be refactored.
 * Run `python setup.py test` to make sure your tests pass
-* Run `coverage run setup.py test --source=sandman` if you have the `coverage` package installed to generate coverage data
+* Run `coverage run setup.py test --source=etlunit` if you have the `coverage` package installed to generate coverage data
 * Check your coverage by running `coverage report`
 
 ## Submitting Changes
