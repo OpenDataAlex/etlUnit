@@ -49,7 +49,7 @@ for the_path in settings_fs_locs:
 
 
 if not settings_loaded:
-    settings_log.error("Could not find settings file in {}. Using defaults where present".format(','.join(settings_fs_locs)))
+    settings_log.warn("Could not find settings file in {}. Using defaults where present.".format(','.join(settings_fs_locs)))
     # For now there is nothing in the settings file that is required for operation. Removing the exit call.
     # exit()
 
