@@ -1,4 +1,4 @@
-#### MySQL Dependencies
+### MySQL Dependencies
 
 Tips on setting up MySQL-python on Linux...
 
