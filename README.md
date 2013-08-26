@@ -1,9 +1,6 @@
 # etlUnit
 
-#### Code status
-
-* Travis-CI: [![Build Status](https://travis-ci.org/dbaAlex/etlUnit.png?branch=develop)](https://travis-ci.org/dbaAlex/etlUnit)
-* Coveralls: [![Coverage Status](https://coveralls.io/repos/dbaAlex/etlUnit/badge.png?branch=develop)](https://coveralls.io/r/dbaAlex/etlUnit?branch=develop)
+[![Build Status](https://travis-ci.org/dbaAlex/etlUnit.png?branch=develop)](https://travis-ci.org/dbaAlex/etlUnit) [![Coverage Status](https://coveralls.io/repos/dbaAlex/etlUnit/badge.png?branch=develop)](https://coveralls.io/r/dbaAlex/etlUnit?branch=develop)
 
 ### Installation
 
