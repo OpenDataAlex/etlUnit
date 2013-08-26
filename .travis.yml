@@ -8,3 +8,5 @@ install:
 script:
     - "coverage run --source=etlunit setup.py test"
     - 'tox'
+after_success:
+    coveralls
