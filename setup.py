@@ -16,11 +16,6 @@ class Tox(TestCommand):
         errcode = tox.cmdline(self.test_args)
         sys.exit(errcode)
 
-import os
-
-with open('requirements.txt') as f:
-    required = f.read().splitlines()
-
 setup(
     name='etlUnit',
     version=etlunit.__version__,
@@ -29,7 +24,21 @@ setup(
     description='Test framework for ETL code.',
     author='Alex Meadows, Coty Sutherland',
     packages=find_packages(),
-    install_requires=required,
+    install_requires=[
+        'Jinja2==2.7.1',
+        'MarkupSafe==0.18',
+        'MySQL-python==1.2.4',
+        'PyYAML==3.10',
+        'Pygments==1.6',
+        'SQLAlchemy==0.8.2',
+        'Sphinx==1.2b1',
+        'docutils==0.11',
+        'py==1.4.15',
+        'tox==1.6.0',
+        'unittest-xml-reporting==1.5.0',
+        'virtualenv==1.10.1',
+        'wsgiref==0.1.2',
+    ],
     classifiers=[
         'Programming Language :: Python',
         'Development Status :: 4 - Beta'
