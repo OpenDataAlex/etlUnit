@@ -1,3 +1,9 @@
+"""
+    This file reads the etlunit-settings.yml file and loads application settings.
+
+    Having a settings file in the users home directory overrides the one in the application directory.
+"""
+
 __author__ = 'coty'
 
 import logging

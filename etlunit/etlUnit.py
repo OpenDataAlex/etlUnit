@@ -1,3 +1,7 @@
+"""
+    This is the main file for the application.
+"""
+
 __author__ = 'coty'
 
 import sys
@@ -10,8 +14,8 @@ def main(argv):
         them on to the appropriate classes to continue execution.
 
         There are three main functions of this application.
-        1) Take in yaml
-        2) Generate code from that yaml
+        1) Take in YAML
+        2) Generate code from that YAML
         3) Execute that code so that we can take advantage of the unittest libraries
     """
     parser = optparse.OptionParser("usage: %prog [options]")

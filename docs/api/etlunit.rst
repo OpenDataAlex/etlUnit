@@ -47,5 +47,6 @@ Subpackages
 .. toctree::
 
     etlunit.template_base
+    etlunit.test
     etlunit.utils
 

@@ -1,9 +1,19 @@
+"""
+    This file houses the tests for the etlUnit file.
+"""
+
 import unittest
 
 
-class MyTestCase(unittest.TestCase):
+class etlUnit_TestCase(unittest.TestCase):
+    """
+        Test case for the etlUnit class.
+    """
 
     def test_dummy(self):
+        """
+            Dummy test for now that just checks a static string :)
+        """
         expectedResult = "test"
         result = "test"
 

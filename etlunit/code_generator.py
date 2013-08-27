@@ -1,3 +1,7 @@
+"""
+    This file houses all of the code necessary to generate code from templates.
+"""
+
 __author__ = 'coty'
 
 import logging
@@ -8,12 +12,19 @@ from etlunit.utils.settings import etlunit_config, console
 
 class CodeGenerator():
     """
-        This class performs the generation of the code. Using the jinja2 template engine, we are taking in yaml
+        This class performs the generation of the code. Using the Jinja2 template engine, we are taking in YAML
         and generating code from it by filling in templates.
     """
 
-    # TODO: Determine if the array passed into the class is a single yaml array or if it is multile arrays from files
+    # TODO: Determine if the array passed into the class is a single YAML array or if it is multile arrays from files
     def __init__(self, out_dir, data):
+        """
+            This method initializes the logging variables as well as the yaml_data and out_dir variables.
+            :param out_dir: The output directory that we will generate code in.
+            :type out_dir: str.
+            :param data: An array of data that comes from the YAML resource file.
+            :type data: arr.
+        """
         self.log = logging.getLogger(name='CodeGenerator')
         self.log.setLevel(etlunit_config['logging_level'])
         self.log.addHandler(console)
@@ -23,13 +34,12 @@ class CodeGenerator():
 
     def generateCode(self, test):
         """
-            Generate code has to be smart enough to determine if the json array should generate a test case, or a
-            fixture or if it needs to generate both.
-
-            * If setup or teardown is present, then its a test case
-            * If parent is present, then it needs to extend a fixture
+            This method actually generates the code.
+            :param test: A boolean that determines if we are running a test or not. If its true, then we don't persist
+            the code that we generate, it prints to stdout instead.
+            :type test: bool.
         """
-        #TODO: Maybe we should have a yaml validation class?
+        #TODO: Maybe we should have a YAML validation class?
         #Totaly agree - that makes perfect sense.
         from jinja2 import Environment, FileSystemLoader
         from time import strftime, gmtime
@@ -83,6 +93,16 @@ class CodeGenerator():
         self.log.info("Code generation complete.")
 
     def persist_output(self, name, output, test):
+        """
+            This method persist the generated code to the output directory specified.
+            :param name: The name of the test suite.
+            :type name: str.
+            :param output: The output from the template being rendered.
+            :type output: str.
+            :param test: A boolean that determines if we are testing or not. If we are testing, then output is not
+            persisted.
+            :type test: bool.
+        """
         if test:
             self.log.testing('\n' + self.template_output + '\n')
         else:

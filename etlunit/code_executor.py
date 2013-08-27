@@ -1,3 +1,7 @@
+"""
+    This file houses all of the code necessary to execute the application that we are generating.
+"""
+
 __author__ = 'coty'
 
 import logging
@@ -10,6 +14,12 @@ class CodeExecutor():
     """
 
     def __init__(self, out_dir):
+        """
+            Initialization method that inits up the logger and output directory variables.
+
+            :param out_dir: The output directory where the code was generated and that we will execute from.
+            :type out_dir: str.
+        """
         self.log = logging.getLogger(name='CodeExecutor')
         self.log.setLevel(etlunit_config['logging_level'])
         self.log.addHandler(console)
@@ -17,6 +27,12 @@ class CodeExecutor():
         self.out_dir = out_dir
 
     def execute(self, test):
+        """
+            This method actually performs the execution of the code we generated.
+            :param test: A boolean that determins if this is a test execution or not. If it is a test, then we do not
+            really execute the code, we only print a list of files that would have been executed.
+            :type test: bool.
+        """
         from os import listdir
         from os.path import isfile, join
 
