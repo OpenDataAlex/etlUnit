@@ -49,7 +49,8 @@ class CodeExecutor():
 
             if test:
                 self.log.testing("Would execute %s" % file_path)
+                return 0
             else:
                 self.log.debug(file_path)
                 # Using subprocess versus execfile because the unittests will not execute under execfile
-                subprocess.call(file_path)
+                return subprocess.call(file_path)
