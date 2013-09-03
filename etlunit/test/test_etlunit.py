@@ -1,23 +1,7 @@
 """
-    This file houses the tests for the etlUnit file.
+    This module is a place holder for the etlUnit test package.
+
+    Currently unsure how to test it because it is not returning in exit code to the utrunner. Need to figure this out.
 """
 
-import unittest
-
-
-class etlUnit_TestCase(unittest.TestCase):
-    """
-        Test case for the etlUnit class.
-    """
-
-    def test_dummy(self):
-        """
-            Dummy test for now that just checks a static string :)
-        """
-        expectedResult = "test"
-        result = "test"
-
-        self.assertEqual(expectedResult, result)
-
-if __name__ == "__main__":
-    unittest.main(verbosity=2)
+__author__ = 'coty'
