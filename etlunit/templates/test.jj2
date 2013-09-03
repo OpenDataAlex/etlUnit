@@ -1,4 +1,4 @@
-    def test_{{ test['name']|join('') }}(self):
+    def {{ test['name']|join('') }}(self):
         connector = DB_Connector('{{ test['connection'] }}')
     {% if test['count'] %}
         result = connector.getCount('{{ test['table'] }}')

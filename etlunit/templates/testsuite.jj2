@@ -7,7 +7,7 @@ from {{ fixture }} import *
 {% endif %}
 
 
-class {{ suitename }}({{ fixture }}):
+class {{ name }}({{ fixture }}):
     
 {% for test in tests %}
     {% include 'test.jj2' %}

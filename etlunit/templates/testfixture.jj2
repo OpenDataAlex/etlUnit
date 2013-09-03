@@ -10,10 +10,6 @@ class {{ fixture }}(unittest.TestCase):
         records = {{ setup['records'] }}
         connector.insertInto('{{ setup['table'] }}', records)
 
-        print "\nFixture setup"
-
     def tearDown(self):
         connector = DB_Connector('{{ teardown['connection'] }}')
         connector.deleteFrom('{{ teardown['table'] }}')
-
-        print "Fixture teardown"
