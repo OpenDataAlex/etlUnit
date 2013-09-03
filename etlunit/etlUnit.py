@@ -42,13 +42,13 @@ def main(argv):
 
     if options.gen_code:
         from etlunit.yaml_reader import YAMLReader
-        t = YAMLReader(options.in_file, options.in_dir)
-        yaml_data = t.readTests()
+        r = YAMLReader(options.in_file, options.in_dir)
+        resource_data = r.readTests()
 
         from etlunit.code_generator import CodeGenerator
-        g = CodeGenerator(options.out_dir, yaml_data)
+        g = CodeGenerator(options.out_dir, resource_data, options.test_run)
         # TODO: Decide if there should be a way to check if generated code should be updated or not.
-        g.generateCode(options.test_run)
+        g.generateCode()
 
     if options.exec_code:
         from etlunit.code_executor import CodeExecutor
