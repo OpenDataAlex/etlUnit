@@ -64,3 +64,5 @@ class YAMLReader():
 
                 from os import path
                 self.tests[filename]['res_dir'] = self.in_dir or path.dirname(self.in_file)
+
+        return self.tests

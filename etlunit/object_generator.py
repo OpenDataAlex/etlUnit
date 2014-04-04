@@ -6,7 +6,9 @@
 __author__ = 'ameadows'
 
 import logging
-import sqlacodegen
+from yaml_reader import YAMLReader
+from subprocess import call
+
 from etlunit.utils.settings import etlunit_config, console
 
 class ObjectGenerator:
@@ -31,9 +33,19 @@ class ObjectGenerator:
         self.settings_dir = settings_dir
         self.out_dir = out_dir
         self.conn_name = conn_name
+        self.connection_file = './res/connections.yml'
+        self.outfile = self.settings_dir + "/" + self.conn_name + ".sqlalchemy"
+
+        self.connections = YAMLReader(self.connection_file).readFile()
+        self.connection = self.connections[self.connection_file][self.conn_name]
+
+        self.engine = self.connection['dbtype'] + "://" + self.connection['user'] + ":" + self.connection[
+            'password'] + "@" + self.connection['host'] + ":" + self.connection['port'] +"/" + self.connection['dbname']
 
 
     def generateObject(self):
         '''
-            This method generates the object set based on the connection in
+            This method generates the object set based on the given connection and object.
         '''
+
+        call("sqlacodegen", "--outfile " + self.outfile + " " + self.engine)
