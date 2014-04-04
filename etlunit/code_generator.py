@@ -68,6 +68,7 @@ class CodeGenerator:
                 # TODO: Add logic for setup/teardown if fixture is unittest.TestCase ?
                 self.generate_from_template("testsuite.jj2", variables)
 
+
         self.log.info("Code generation complete.")
 
     def get_fixture_data(self, test_suite):
@@ -91,6 +92,7 @@ class CodeGenerator:
                 template_stream.dump("%s%s.py" % (self.out_dir, variables['name']))
             else:
                 template_stream.dump("%s/%s.py" % (self.out_dir, variables['name']))
+
 
     def setup_jinja_env(self):
         from jinja2 import Environment, PackageLoader

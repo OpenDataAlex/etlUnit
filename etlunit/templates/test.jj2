@@ -1,5 +1,15 @@
     def {{ test['name']|join('') }}(self):
         connector = DB_Connector('{{ test['connection'] }}')
+
+    {% if test['query'] %}
+
+      {% if test['select'] %}
+        q = select([])
+      {% endif %}
+
+
+    {% endif %}
+
     {% if test['count'] %}
         result = connector.getCount('{{ test['table'] }}')
         expectedResult = {{ test['count'] }}
