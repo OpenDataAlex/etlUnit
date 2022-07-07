@@ -25,7 +25,7 @@ setup(
     author='Alex Meadows, Coty Sutherland',
     packages=find_packages(),
     install_requires=[
-        'Jinja2==2.7.1',
+        'Jinja2==2.11.3',
         'MarkupSafe==0.18',
         'MySQL-python==1.2.4',
         'PyYAML==3.10',
