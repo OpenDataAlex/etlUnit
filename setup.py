@@ -33,7 +33,7 @@ setup(
         'SQLAlchemy==0.8.2',
         'Sphinx==1.2b1',
         'docutils==0.11',
-        'py==1.4.15',
+        'py==1.11.0',
         'tox==1.6.0',
         'unittest-xml-reporting==1.5.0',
         'virtualenv==1.10.1',
